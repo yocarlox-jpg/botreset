@@ -1,4 +1,3 @@
-cat > /root/install_serverbot.sh <<'BASH'
 #!/bin/bash
 
 set -e
@@ -24,18 +23,20 @@ if [ "$(id -u)" -ne 0 ]; then
   exit 1
 fi
 
-echo -e "${YELLOW}Datos necesarios:${NC}"
+echo -e "${YELLOW}Este instalador creará:${NC}"
 echo ""
-echo "1) Token del bot de Telegram"
-echo "2) ID de Telegram autorizado"
-echo "3) Primer servidor a controlar"
+echo "✅ Bot de Telegram para controlar servidores Plex / Emby"
+echo "✅ Clave SSH propia para ServerBot"
+echo "✅ Servicio systemd"
+echo "✅ Menú con botones"
+echo "✅ Scripts para añadir, editar, borrar y listar servidores"
 echo ""
 
 read -rp "TOKEN del bot de Telegram: " BOT_TOKEN
 
 echo ""
 echo "Usuarios autorizados de Telegram."
-echo "Puedes poner hasta 3 IDs. Deja vacío el usuario 2 o 3 si no los usas."
+echo "Puedes poner hasta 3 IDs. Deja vacío usuario 2 o 3 si no los usas."
 echo ""
 
 read -rp "ID Telegram usuario 1: " USER_ID_1
@@ -1288,13 +1289,3 @@ echo ""
 echo "Editar servidor:"
 echo "/root/serverbot/edit_server.sh"
 echo ""
-BASH
-
-chmod +x /root/install_serverbot.sh
-
-echo ""
-echo "✅ Instalador creado:"
-ls -lh /root/install_serverbot.sh
-echo ""
-echo "Revisando posibles datos privados:"
-grep -nE "6795969475|51\.254|193\.111|195\.154|154\.12|766325|AAG-|BEGIN OPENSSH|PRIVATE KEY" /root/install_serverbot.sh || echo "✅ No se ven datos privados obvios"
